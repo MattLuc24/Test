@@ -6,7 +6,7 @@ def main():
     print("Logs from your program will appear here!")
 
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
-    # Wait for client connection and send "+OK" response
+    # Wait for client connection and send "+PONG" response
     connection, _ = server_socket.accept()
     connection.sendall(b"+PONG\r\n")
 
