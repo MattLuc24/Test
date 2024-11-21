@@ -1,14 +1,14 @@
-import socket  # noqa: F401
+import socket
 
 
 def main():
-    # You can use print statements as follows for debugging, they'll be visible when running tests.
     print("Logs from your program will appear here!")
-
-    # Uncomment this to pass the first stage
-    #
+    
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
-    server_socket.accept() # wait for client
+    client_socket, _ = server_socket.accept()  # wait for client
+    client_socket.recv(1024)  # receive data from the client
+    client_socket.sendall(b"+PONG\r\n")  # send the +PONG response
+    client_socket.close()  # close the client connection
 
 
 if __name__ == "__main__":
